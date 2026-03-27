@@ -1,0 +1,644 @@
+.game-stats-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: var(--neon-pink);
+  transform: translateX(-5px);
+}
+
+.stats-header {
+  display: flex;
+  gap: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stats-header img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.stats-header h1 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats-header p {
+  color: var(--text-secondary);
+}
+
+/* Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 5px 20px rgba(0, 255, 249, 0.2);
+}
+
+.stat-card svg {
+  font-size: 2rem;
+  color: var(--neon-cyan);
+}
+
+.stat-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+/* Chart Container */
+.chart-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--neon-cyan);
+}
+
+/* Reviews Section */
+.reviews-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.reviews-section h2 {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  color: var(--neon-cyan);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-item {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  background: rgba(0, 255, 249, 0.05);
+  transform: translateX(5px);
+}
+
+.review-item strong {
+  color: var(--neon-cyan);
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.review-rating {
+  color: #ffc107;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.review-item p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Loading state */
+.loading-state {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-stats-container {
+    padding: 1rem;
+  }
+  
+  .stats-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .stats-header img {
+    width: 100px;
+    height: 100px;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .chart-container {
+    overflow-x: auto;
+  }
+}
+
+.game-stats-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.back-button {
+  background: none;
+  border: none;
+  color: var(--neon-cyan);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.back-button:hover {
+  color: var(--neon-pink);
+  transform: translateX(-5px);
+}
+
+.stats-header {
+  display: flex;
+  gap: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+}
+
+.game-cover {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.game-info {
+  flex: 1;
+}
+
+.game-info h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+
+.game-description {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.game-meta {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.game-meta span {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.status-badge.published {
+  background: rgba(0, 255, 136, 0.2);
+  color: #00ff88;
+}
+
+.status-badge.draft {
+  background: rgba(255, 170, 0, 0.2);
+  color: #ffaa00;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--neon-cyan);
+}
+
+.stat-icon {
+  font-size: 2rem;
+  color: var(--neon-cyan);
+}
+
+.stat-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-card p {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.chart-container {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.chart-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.reviews-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+}
+
+.reviews-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.review-item {
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateX(5px);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.review-rating {
+  color: #ffc107;
+  font-size: 0.9rem;
+}
+
+.review-item p {
+  color: var(--text-secondary);
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.game-not-found {
+  text-align: center;
+  padding: 4rem;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 2rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .game-stats-container {
+    padding: 1rem;
+  }
+  
+  .stats-header {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .game-cover {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+  }
+  
+  .game-meta {
+    justify-content: center;
+  }
+  
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Reviews Section */
+.reviews-section {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 2rem;
+}
+
+.reviews-section h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.3rem;
+  color: var(--neon-cyan);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.review-item {
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  padding: 1.2rem;
+  transition: all 0.3s ease;
+}
+
+.review-item:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateX(5px);
+}
+
+.review-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.review-user {
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.review-avatar img,
+.avatar-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.avatar-placeholder {
+  background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 1rem;
+  color: var(--dark-bg);
+}
+
+.review-rating {
+  color: #ffc107;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+}
+
+.review-date {
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.review-content {
+  margin-bottom: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.review-replies {
+  margin-top: 1rem;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--neon-cyan);
+}
+
+.reply-item {
+  background: rgba(0, 255, 249, 0.05);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.reply-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.reply-header strong {
+  color: var(--neon-cyan);
+}
+
+.reply-header small {
+  color: var(--text-muted);
+}
+
+.reply-item p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.review-footer {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid rgba(0, 255, 249, 0.1);
+}
+
+.helpful-button,
+.reply-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.helpful-button {
+  color: var(--text-secondary);
+}
+
+.helpful-button:hover {
+  background: rgba(0, 255, 249, 0.1);
+  color: var(--neon-cyan);
+}
+
+.reply-button {
+  color: var(--neon-cyan);
+}
+
+.reply-button:hover {
+  background: rgba(0, 255, 249, 0.1);
+  transform: translateY(-2px);
+}
+
+.reply-form {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 255, 249, 0.2);
+}
+
+.reply-form textarea {
+  width: 100%;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: var(--text-primary);
+  font-family: 'Inter', sans-serif;
+  resize: vertical;
+}
+
+.reply-actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  justify-content: flex-end;
+}
+
+.reply-actions button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+.no-reviews {
+  text-align: center;
+  padding: 3rem;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .review-header {
+    flex-direction: column;
+  }
+  
+  .review-footer {
+    flex-direction: column;
+  }
+  
+  .helpful-button,
+  .reply-button {
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .review-replies {
+    padding-left: 0.5rem;
+  }
+  
+  .reply-actions {
+    flex-direction: column;
+  }
+  
+  .reply-actions button {
+    width: 100%;
+  }
+}

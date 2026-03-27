@@ -1,0 +1,240 @@
+.game-detail-container {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+/* Header Section */
+.game-detail-header {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.game-detail-header::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(0, 255, 249, 0.05), transparent);
+  animation: rotate 20s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.game-detail-cover {
+  width: 100%;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 249, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.game-detail-cover:hover {
+  transform: scale(1.02);
+}
+
+.game-detail-info {
+  position: relative;
+  z-index: 1;
+}
+
+.game-detail-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.game-detail-rating {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #ffc107;
+  margin: 1rem 0;
+  font-size: 1.2rem;
+}
+
+.game-detail-rating span {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.game-detail-description-short {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 1rem 0;
+  font-size: 1rem;
+}
+
+.game-detail-price {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  margin: 1rem 0;
+}
+
+.game-detail-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.game-detail-actions .btn {
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+}
+
+/* Description Section */
+.game-detail-description,
+.game-detail-screenshots,
+.game-detail-specs,
+.game-detail-reviews {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeInUp 0.6s ease;
+}
+
+.game-detail-description h2,
+.game-detail-screenshots h2,
+.game-detail-specs h2,
+.game-detail-reviews h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.game-detail-description h2::after,
+.game-detail-screenshots h2::after,
+.game-detail-specs h2::after,
+.game-detail-reviews h2::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 50%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-pink));
+}
+
+.game-detail-description p {
+  color: var(--text-secondary);
+  line-height: 1.8;
+  font-size: 1rem;
+}
+
+/* Screenshots */
+.screenshots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.screenshot {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--card-border);
+}
+
+.screenshot:hover {
+  transform: scale(1.05);
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 20px rgba(0, 255, 249, 0.3);
+}
+
+/* System Requirements */
+.specs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.specs-min,
+.specs-rec {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 1.2rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.specs-min:hover,
+.specs-rec:hover {
+  background: rgba(0, 0, 0, 0.4);
+  transform: translateY(-3px);
+}
+
+.specs-min h3,
+.specs-rec h3 {
+  color: var(--neon-cyan);
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.specs-min ul,
+.specs-rec ul {
+  list-style: none;
+  padding: 0;
+}
+
+.specs-min li,
+.specs-rec li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid rgba(0, 255, 249, 0.1);
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.specs-min li:last-child,
+.specs-rec li:last-child {
+  border-bottom: none;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .game-detail-container {
+    padding: 1rem;
+  }
+  
+  .game-detail-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  
+  .game-detail-cover {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  .game-detail-actions {
+    flex-direction: column;
+  }
+  
+  .specs-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .screenshots-grid {
+    grid-template-columns: 1fr;
+  }
+}
