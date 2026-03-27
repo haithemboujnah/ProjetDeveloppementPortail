@@ -4,22 +4,14 @@
 [![React](https://img.shields.io/badge/React-18.2-blue.svg)](https://reactjs.org/)
 [![MySQL](https://img.shields.io/badge/MySQL-8.0-orange.svg)](https://www.mysql.com/)
 [![Stripe](https://img.shields.io/badge/Stripe-API-purple.svg)](https://stripe.com)
-[![License](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 > Une plateforme complète de distribution de jeux vidéo inspirée de Steam, permettant aux joueurs d'acheter et de jouer à des jeux, et aux développeurs de publier et vendre leurs créations.
 
 ## 📋 Table des Matières
 
 - [Fonctionnalités](#-fonctionnalités)
-- [Architecture](#-architecture)
 - [Technologies Utilisées](#-technologies-utilisées)
 - [Installation](#-installation)
-- [Configuration](#-configuration)
-- [Démarrage Rapide](#-démarrage-rapide)
-- [Structure du Projet](#-structure-du-projet)
-- [API Documentation](#-api-documentation)
-- [Déploiement](#-déploiement)
-- [Contribution](#-contribution)
 - [Licence](#-licence)
 
 ## ✨ Fonctionnalités
