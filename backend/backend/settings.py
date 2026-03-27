@@ -164,8 +164,8 @@ SIMPLE_JWT = {
 }
 
 # Stripe settings (replace with your actual keys)
-STRIPE_PUBLIC_KEY = 'pk_test_51T2D9ACzEbCTE7nOvkCLWXZDdtFI7ysYUWxq6ezHagPY15KCPYAsjkpSgvLIXiorxFAt2f9KPQfkum4PenC6Xhkv00rxmCPnBS'
-STRIPE_SECRET_KEY = 'sk_test_51T2D9ACzEbCTE7nOwCIjKqtCVfZIJj6xdUMY8utPOfGvlwz434riVTfyIgqwsFS7iSOegnCNeP1YcZDHZc2J4axw00PYGf6wuV'
+STRIPE_PUBLIC_KEY = 'your_key_here'
+STRIPE_SECRET_KEY = 'your_key_here'
 
 # Logging configuration
 LOGGING = {
