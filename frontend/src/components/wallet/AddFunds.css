@@ -1,0 +1,73 @@
+.add-funds-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  animation: fadeInUp 0.3s ease;
+}
+
+.add-funds-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.add-funds-header h3 {
+  margin: 0;
+  color: var(--neon-cyan);
+  font-size: 1.1rem;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.close-button:hover {
+  color: var(--neon-red);
+  transform: scale(1.1);
+}
+
+.amount-input {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.currency {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--neon-cyan);
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+}
+
+.amount-input input {
+  flex: 1;
+  padding: 0.75rem;
+  font-size: 1.2rem;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  color: white;
+}
+
+.amount-input input:focus {
+  outline: none;
+  border-color: var(--neon-cyan);
+}
+
+.min-amount {
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  text-align: center;
+}

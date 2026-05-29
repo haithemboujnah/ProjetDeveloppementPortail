@@ -27,6 +27,9 @@ from orders.models import Order, OrderItem
 from reviews.models import Review
 import logging
 
+from rest_framework.permissions import IsAuthenticated
+from rest_framework import status
+
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
@@ -357,6 +360,41 @@ class AdminReviewStatsView(APIView):
             'by_rating': reviews_by_rating,
             'monthly': monthly_reviews
         })
+    
+class AddWalletBalanceView(APIView):
+    """Ajouter de l'argent au portefeuille"""
+    permission_classes = [IsAuthenticated]
+    
+    def post(self, request):
+        amount = request.data.get('amount')
+        
+        if not amount:
+            return Response({'error': 'Amount is required'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            amount = float(amount)
+            if amount <= 0:
+                return Response({'error': 'Amount must be positive'}, status=status.HTTP_400_BAD_REQUEST)
+        except ValueError:
+            return Response({'error': 'Invalid amount'}, status=status.HTTP_400_BAD_REQUEST)
+        
+        # Ajouter au portefeuille
+        request.user.wallet_balance += amount
+        request.user.save()
+        
+        # Créer une notification
+        from notifications.models import Notification
+        Notification.objects.create(
+            user=request.user,
+            title='Wallet Recharged',
+            message=f'${amount} has been added to your wallet. New balance: ${request.user.wallet_balance}',
+            notification_type='success'
+        )
+        
+        return Response({
+            'message': 'Wallet recharged successfully',
+            'new_balance': float(request.user.wallet_balance)
+        }, status=status.HTTP_200_OK)
     
 @csrf_exempt
 @cache_control(max_age=86400)  # Cache for 24 hours

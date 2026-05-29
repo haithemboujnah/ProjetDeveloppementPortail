@@ -12,14 +12,23 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from users.permissions import IsDeveloper
 
-# Game Views
+
 class GameListView(generics.ListCreateAPIView):
-    queryset = Game.objects.filter(is_published=True, status='approved')
     serializer_class = GameSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter, filters.OrderingFilter]
     search_fields = ['title', 'description']
     filterset_fields = ['categories', 'developer']
     ordering_fields = ['price', 'average_rating', 'release_date']
+    
+    def get_queryset(self):
+        user = self.request.user
+        
+        is_admin_panel = self.request.GET.get('admin') == 'true'
+        
+        if is_admin_panel and user.is_authenticated and (user.is_staff or user.role == 'admin'):
+            return Game.objects.all().order_by('-release_date')
+        
+        return Game.objects.filter(is_published=True, status='approved').order_by('-release_date')
     
     def get_permissions(self):
         if self.request.method == 'POST':
@@ -27,24 +36,20 @@ class GameListView(generics.ListCreateAPIView):
         return [permissions.AllowAny()]
     
     def perform_create(self, serializer):
-        # Assigner automatiquement l'utilisateur connecté comme développeur
         serializer.save(developer=self.request.user)
     
     def create(self, request, *args, **kwargs):
-        # Log pour debug
         print("=== Creating game ===")
         print("User:", request.user)
         print("User role:", request.user.role)
         print("Request data:", request.data)
         
-        # Vérifier que l'utilisateur est un développeur
         if request.user.role != 'developer' and not request.user.is_staff:
             return Response(
                 {'error': 'Only developers can create games'}, 
                 status=status.HTTP_403_FORBIDDEN
             )
         
-        # Créer le serializer avec les données
         serializer = self.get_serializer(data=request.data)
         
         if not serializer.is_valid():

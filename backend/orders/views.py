@@ -178,7 +178,6 @@ class CreatePaymentIntentView(APIView):
             return Response({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 class ConfirmOrderView(APIView):
-    """Confirm order after successful payment"""
     permission_classes = [permissions.IsAuthenticated]
     
     @transaction.atomic
@@ -210,6 +209,22 @@ class ConfirmOrderView(APIView):
             # Get games
             games = Game.objects.filter(id__in=game_ids)
             
+            # Calculate total
+            total = sum(game.get_final_price() for game in games)
+            
+            # Vérifier le solde de l'utilisateur
+            if request.user.wallet_balance < total:
+                # Rembourser Stripe
+                refund = stripe.Refund.create(
+                    payment_intent=payment_intent_id,
+                    reason='requested_by_customer'
+                )
+                return Response({
+                    'error': 'Insufficient balance',
+                    'balance': float(request.user.wallet_balance),
+                    'required': float(total)
+                }, status=status.HTTP_400_BAD_REQUEST)
+            
             # Check if order already exists
             existing_order = Order.objects.filter(stripe_payment_intent=payment_intent_id).first()
             if existing_order:
@@ -219,8 +234,11 @@ class ConfirmOrderView(APIView):
                     'order_number': existing_order.order_number
                 })
             
+            # DÉBITER LE PORTEFEUILLE
+            request.user.wallet_balance -= total
+            request.user.save()
+            
             # Create order
-            total = sum(game.get_final_price() for game in games)
             order = Order.objects.create(
                 user=request.user,
                 total_amount=total,
@@ -251,7 +269,7 @@ class ConfirmOrderView(APIView):
             Notification.objects.create(
                 user=request.user,
                 title='Purchase Successful! 🎉',
-                message=f'You have successfully purchased {len(games)} game(s). Check your library to start playing!',
+                message=f'You have successfully purchased {len(games)} game(s). ${total} has been deducted from your wallet.',
                 notification_type='success',
                 link=f'/orders/{order.id}'
             )
@@ -261,7 +279,8 @@ class ConfirmOrderView(APIView):
                 'message': 'Order completed successfully',
                 'order_id': order.id,
                 'order_number': order.order_number,
-                'total_amount': float(order.total_amount)
+                'total_amount': float(order.total_amount),
+                'new_balance': float(request.user.wallet_balance)
             })
             
         except stripe.error.StripeError as e:

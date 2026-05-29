@@ -16,6 +16,7 @@ class UserSerializer(serializers.ModelSerializer):
     owned_games_count = serializers.SerializerMethodField()
     reviews_count = serializers.SerializerMethodField()
     owned_games = serializers.SerializerMethodField()
+    wallet_balance = serializers.SerializerMethodField()
     
     class Meta:
         model = User
@@ -41,7 +42,11 @@ class UserSerializer(serializers.ModelSerializer):
         from games.models import UserGame
         owned = UserGame.objects.filter(user=obj)
         return UserGameSerializer(owned, many=True).data
-
+    
+    def get_wallet_balance(self, obj):
+        """Convertir le wallet_balance en float"""
+        return float(obj.wallet_balance) if obj.wallet_balance else 0.0
+    
 class UserUpdateSerializer(serializers.ModelSerializer):
     """Serializer pour la mise à jour du profil utilisateur"""
     class Meta:
